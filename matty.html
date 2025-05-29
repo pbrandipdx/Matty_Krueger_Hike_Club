@@ -17,7 +17,7 @@
         - Safety Hazard Cards: Simplified to bordered divs.
         - Fueling Section (Food & Water - General): Basic text sections.
         - Logistics Section (Trailheads, Camping - General): Basic text sections.
-        - Group Climb Details Section: Styled with a different background color and borders.
+        - Group Climb Details Section: Styled with a different background color and borders. Populated with full details from Matthew Krueger's email, PII generalized.
         - Climb Day Timeline (General): Simple list or basic table.
         - Resources: Underlined blue links.
         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All charts are Chart.js on Canvas. Diagrams are HTML/CSS with JS. Icons are Unicode. Header image placeholder removed. Visual enhancements achieved via CSS. Tailwind CSS has been removed.
@@ -80,10 +80,14 @@
             list-style-type: disc;
             margin-left: 20px;
         }
-        strong {
+        strong { /* General strong will be black, specific 90s red emphasis via class or inline */
             font-weight: bold;
-            color: #FF0000; /* Bright Red for emphasis */
         }
+        .emphasis-90s-red {
+             color: #FF0000; /* Bright Red for emphasis */
+             font-weight: bold;
+        }
+
 
         a {
             color: #0000FF; /* Bright Blue */
@@ -100,35 +104,39 @@
             margin: 25px 0;
         }
         
-        /* Simulating "Cards" from previous design with simple borders */
         .card-90s {
             border: 2px inset #A0A0A0;
             padding: 10px;
             margin-bottom: 15px;
-            background-color: #F0F0F0; /* Light gray background for cards */
+            background-color: #F0F0F0; 
         }
 
         .group-section-card-90s {
-            border: 2px outset #008000; /* Green outset border */
-            padding: 10px;
+            border: 2px outset #008000; 
+            padding: 15px; /* More padding for the main group section */
             margin-bottom: 15px;
-            background-color: #E0FFE0; /* Light Green background for group section */
+            background-color: #E0FFE0; 
         }
         .group-section-card-90s h3, .group-section-card-90s h4 {
-            color: #006400; /* Darker Green for titles in group section */
+            color: #006400; 
+        }
+        .group-subsection-90s { /* For subsections within Matt's group page */
+            border: 1px dashed #006400;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #F0FFF0; /* Lighter green */
         }
 
 
         .chart-container { 
             position: relative; 
             width: 100%; 
-            max-width: 500px; /* Smaller chart */
+            max-width: 500px; 
             margin: 20px auto; 
             height: 250px; 
             border: 1px solid #000000;
         }
 
-        /* Accordion styling */
         .accordion-toggle-90s {
             background-color: #D0D0D0;
             color: #000080;
@@ -137,6 +145,9 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 10px;
+            display: block; /* Make it block for better spacing */
+            width: 100%;
+            text-align: left;
         }
         .accordion-toggle-90s:hover {
             background-color: #B0B0B0;
@@ -149,13 +160,13 @@
             background-color: #FAFAFA;
         }
 
-        /* Tab styling */
         .tab-button-90s {
             display: inline-block;
-            background-color: #0000FF; /* Blue */
-            color: #FFFFFF; /* White text */
+            background-color: #0000FF; 
+            color: #FFFFFF; 
             padding: 5px 10px;
             margin-right: 5px;
+            margin-bottom: 5px; /* For wrapping */
             border: 2px outset #000080;
             text-decoration: none;
             font-family: Arial, Helvetica, sans-serif;
@@ -166,7 +177,7 @@
             background-color: #0000CC;
         }
         .tab-button-90s.active {
-            background-color: #FF0000; /* Red for active */
+            background-color: #FF0000; 
             border-style: inset;
         }
         .tab-content-90s {
@@ -179,41 +190,39 @@
             display: block;
         }
 
-        /* Navigation */
         nav table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #000080; /* Dark Blue nav background */
-            border-bottom: 3px solid #FFD700; /* Gold border */
+            background-color: #000080; 
+            border-bottom: 3px solid #FFD700; 
         }
         nav td {
             text-align: center;
             padding: 5px 0;
         }
         nav a {
-            color: #FFFF00; /* Yellow links */
+            color: #FFFF00; 
             text-decoration: none;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
             padding: 5px 8px;
         }
         nav a:hover {
-            background-color: #FF0000; /* Red hover */
+            background-color: #FF0000; 
             color: #FFFFFF;
         }
         
-        /* Header */
         header#hero-90s {
-            background-color: #000000; /* Black background */
-            color: #00FF00; /* Bright Green text */
+            background-color: #000000; 
+            color: #00FF00; 
             text-align: center;
-            padding: 20px 10px; /* Increased padding since image is removed */
-            border-bottom: 5px ridge #FFD700; /* Gold ridge */
+            padding: 20px 10px; 
+            border-bottom: 5px ridge #FFD700; 
         }
         header#hero-90s h1 {
-            font-family: "Comic Sans MS", cursive, sans-serif; /* Classic 90s font */
+            font-family: "Comic Sans MS", cursive, sans-serif; 
             font-size: 36px;
-            color: #FFFF00; /* Yellow */
+            color: #FFFF00; 
             margin: 0;
             animation: welcome-blink 1.5s infinite;
         }
@@ -223,18 +232,17 @@
         }
         header#hero-90s p {
             font-size: 14px;
-            color: #00FFFF; /* Cyan */
+            color: #00FFFF; 
             margin-top: 10px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             font-size: 10px;
             color: #FFFFFF;
-            background-color: #000080; /* Dark Blue */
+            background-color: #000080; 
             padding: 10px;
-            border-top: 3px solid #FFD700; /* Gold */
+            border-top: 3px solid #FFD700; 
             margin-top: 20px;
         }
         footer p {
@@ -243,10 +251,9 @@
         }
         .last-updated {
             font-style: italic;
-            color: #FFFF00; /* Yellow */
+            color: #FFFF00; 
         }
 
-        /* Blinking "NEW!" text - use sparingly */
         .blinking-new {
             animation: blinker 1s linear infinite;
             color: #FF0000;
@@ -262,7 +269,7 @@
     <header id="hero-90s">
         <h1>WELCOME TO THE MT. ST. HELENS CLIMBER'S GEO-PAGE! <br><span class="subtitle">Your <span class="blinking-new">ULTIMATE</span> Guide for June Ascents!</span></h1>
         <p>This page is best viewed with Netscape Navigator 4.0 at 800x600 resolution!</p>
-        </header>
+    </header>
 
     <nav>
         <table>
@@ -335,17 +342,17 @@
                     <td bgcolor="#E0E0E0" class="card-90s">
                         <font size="+2">⛰️</font><br>
                         <h4>Peak Elevation</h4>
-                        <p><strong>~8,365 ft</strong><br><font size="-1">At the crater rim.</font></p>
+                        <p><strong class="emphasis-90s-red">~8,365 ft</strong><br><font size="-1">At the crater rim.</font></p>
                     </td>
                     <td bgcolor="#E0E0E0" class="card-90s">
                         <font size="+2">📏</font><br>
                         <h4>Round Trip (Typical)</h4>
-                        <p><strong>~8-12 miles</strong><br><font size="-1">Varies by route.</font></p>
+                        <p><strong class="emphasis-90s-red">~8-12 miles</strong><br><font size="-1">Varies by route.</font></p>
                     </td>
                     <td bgcolor="#E0E0E0" class="card-90s">
                         <font size="+2">🧗</font><br>
                         <h4>Elevation Gain (Typical)</h4>
-                        <p><strong>~4,500-5,700 ft</strong><br><font size="-1">A strenuous ascent.</font></p>
+                        <p><strong class="emphasis-90s-red">~4,500-5,700 ft</strong><br><font size="-1">A strenuous ascent.</font></p>
                     </td>
                 </tr>
             </table>
@@ -363,11 +370,11 @@
                 <h4>Monitor Ridge Route (Summer Route)</h4>
                 <p><font size="-1">This is the most common route once the road to Climbers Bivouac is open and snow has melted sufficiently on the lower trail.</font></p>
                 <ul>
-                    <li><strong>Start Point:</strong> Climbers Bivouac (~3,800 ft).</li>
-                    <li><strong>Distance:</strong> Approximately 8-10 miles round trip (about 5 miles to summit).</li>
-                    <li><strong>Elevation Gain:</strong> Approximately 4,500 - 4,800 feet.</li>
-                    <li><strong>Typical Time:</strong> 7-10 hours round trip (4-6 hours up, 2-4 hours down, depending on fitness and glissading).</li>
-                    <li><strong>Characteristics:</strong>
+                    <li><strong class="emphasis-90s-red">Start Point:</strong> Climbers Bivouac (~3,800 ft).</li>
+                    <li><strong class="emphasis-90s-red">Distance:</strong> Approximately 8-10 miles round trip (about 5 miles to summit).</li>
+                    <li><strong class="emphasis-90s-red">Elevation Gain:</strong> Approximately 4,500 - 4,800 feet.</li>
+                    <li><strong class="emphasis-90s-red">Typical Time:</strong> 7-10 hours round trip (4-6 hours up, 2-4 hours down, depending on fitness and glissading).</li>
+                    <li><strong class="emphasis-90s-red">Characteristics:</strong>
                         <ul>
                             <li><strong>Stage 1 (Forested):</strong> Ptarmigan Trail #216A, ~2 miles, gradual ascent, good warm-up.</li>
                             <li><strong>Stage 2 (Above Treeline):</strong> Boulder fields, ash, pumice, marked by wooden posts. Navigation critical.</li>
@@ -375,17 +382,17 @@
                             <li><strong>Stage 4 (Summit/Crater Rim):</strong> Final push up steeper snow slopes. Be mindful of cornices!</li>
                         </ul>
                     </li>
-                    <li><strong>Note:</strong> Key landmarks like Loowit Viewpoint and the "Weather Station" can aid navigation. Pay close attention to marker posts.</li>
+                    <li><strong class="emphasis-90s-red">Note:</strong> Key landmarks like Loowit Viewpoint and the "Weather Station" can aid navigation. Pay close attention to marker posts.</li>
                 </ul>
 
                 <h4>Worm Flows Route (Winter Route / Early Summer Alternative)</h4>
                 <p><font size="-1">Used when Climbers Bivouac is inaccessible due to snow on the road. This route is longer and involves more elevation gain.</font></p>
                 <ul>
-                    <li><strong>Start Point:</strong> Marble Mountain Sno-Park (~2,700 ft).</li>
-                    <li><strong>Distance:</strong> Approximately 12 miles round trip (about 6 miles to summit).</li>
-                    <li><strong>Elevation Gain:</strong> Approximately 5,700 feet.</li>
-                    <li><strong>Typical Time:</strong> 9-12 hours round trip (5-7 hours up, 3-5 hours down, depending on fitness and glissading).</li>
-                    <li><strong>Characteristics:</strong> Follows a different ridge system, often entirely on snow in June. Requires strong navigation skills and potentially more extensive snow travel. Marked by poles, but can be harder to follow in poor visibility.</li>
+                    <li><strong class="emphasis-90s-red">Start Point:</strong> Marble Mountain Sno-Park (~2,700 ft).</li>
+                    <li><strong class="emphasis-90s-red">Distance:</strong> Approximately 12 miles round trip (about 6 miles to summit).</li>
+                    <li><strong class="emphasis-90s-red">Elevation Gain:</strong> Approximately 5,700 feet.</li>
+                    <li><strong class="emphasis-90s-red">Typical Time:</strong> 9-12 hours round trip (5-7 hours up, 3-5 hours down, depending on fitness and glissading).</li>
+                    <li><strong class="emphasis-90s-red">Characteristics:</strong> Follows a different ridge system, often entirely on snow in June. Requires strong navigation skills and potentially more extensive snow travel. Marked by poles, but can be harder to follow in poor visibility.</li>
                 </ul>
                  <p><font size="-1">Route times are highly dependent on individual fitness, snow conditions, group size, and breaks taken. Plan conservatively.</font></p>
             </div>
@@ -399,7 +406,7 @@
 
             <table width="100%" border="0" cellspacing="10"><tr><td valign="top" width="50%">
             <div class="card-90s">
-                <h3>Step 1: Permits - <blink>MANDATORY!</blink></h3>
+                <h3>Step 1: Permits - <blink class="blinking-new">MANDATORY!</blink></h3>
                 <p>Climbing permits are required from April 1 to October 31.</p>
                 <ul>
                     <li><strong>Where:</strong> Recreation.gov (Search "Mount St. Helens Climbing Permits").</li>
@@ -429,7 +436,7 @@
                 <div>
                     <div class="accordion-toggle-90s" data-target="skill-snow">🏔️ Snow Travel Skills (Crampons & Ice Axe) ▼</div>
                     <div class="accordion-content-90s" id="skill-snow">
-                        <p><font size="-1">Proper use of mountaineering boots and crampons for walking, traversing slopes, and kicking steps. Ice axe skills include self-belay (using the axe for balance and probing snow) and, most crucially, <strong>self-arrest</strong> (stopping a fall on a snow slope). Practice self-arrest thoroughly in a safe environment before your climb. Know how to glissade safely if conditions permit.</font></p>
+                        <p><font size="-1">Proper use of mountaineering boots and crampons for walking, traversing slopes, and kicking steps. Ice axe skills include self-belay (using the axe for balance and probing snow) and, most crucially, <strong class="emphasis-90s-red">self-arrest</strong> (stopping a fall on a snow slope). Practice self-arrest thoroughly in a safe environment before your climb. Know how to glissade safely if conditions permit.</font></p>
                     </div>
                 </div>
                 <div>
@@ -441,7 +448,7 @@
                  <div>
                     <div class="accordion-toggle-90s" data-target="skill-glissade">⚠️ Glissading Know-How (Controlled Descent) ▼</div>
                     <div class="accordion-content-90s" id="skill-glissade">
-                        <p><font size="-1">Glissading (controlled sliding down snow slopes) can be a fun and efficient way to descend, but only if done safely. Requires knowing how to use your ice axe as a brake and rudder. <strong>ALWAYS remove crampons before glissading.</strong> Scout your path carefully for rocks, trees, or other hazards, and ensure a safe runout. Use your heels and hiking poles (if you have them) as additional brakes if needed. Follow established 'butt tracks' if available but always verify the safety of the path. If in doubt, walk down.</font></p>
+                        <p><font size="-1">Glissading (controlled sliding down snow slopes) can be a fun and efficient way to descend, but only if done safely. Requires knowing how to use your ice axe as a brake and rudder. <strong class="emphasis-90s-red">ALWAYS remove crampons before glissading.</strong> Scout your path carefully for rocks, trees, or other hazards, and ensure a safe runout. Use your heels and hiking poles (if you have them) as additional brakes if needed. Follow established 'butt tracks' if available but always verify the safety of the path. If in doubt, walk down.</font></p>
                     </div>
                 </div>
                 <p style="margin-top:10px;"><font size="-1">If you are new to these skills, strongly consider hiring a certified mountain guide or taking a comprehensive mountaineering skills course. Your safety depends on it.</font></p>
@@ -451,7 +458,7 @@
         <hr>
         <section id="gear">
             <h2><img src="https://www.animatedimages.org/data/media/64/animated-backpack-image-0015.gif" alt="animated backpack" width="30" height="30" style="vertical-align:middle; margin-right: 5px;">Essential Gear for June - CHECKLIST!</h2>
-            <p>Having the right gear is critical for safety, comfort, and success on Mount St. Helens in June. This is not an exhaustive list, but these are key items. <strong>NO COTTON</strong> clothing!</p>
+            <p>Having the right gear is critical for safety, comfort, and success on Mount St. Helens in June. This is not an exhaustive list, but these are key items. <strong class="emphasis-90s-red">NO COTTON</strong> clothing!</p>
 
             <div>
                 <a href="javascript:void(0);" class="tab-button-90s active" onclick="openGearTab(event, 'gear-footwear-90s')">👣 Footwear & Traction</a>
@@ -464,35 +471,253 @@
 
             <div id="gear-footwear-90s" class="tab-content-90s active">
                 <h3>Footwear & Traction</h3>
-                <ul><li>Hiking Boots: Sturdy, waterproof...</li><li>Crampons: 10 or 12-point steel...</li> </ul>
+                <ul><li>Hiking Boots: Sturdy, waterproof hiking boots with good ankle support are highly recommended. If your footwear is new, or you haven't worn them in a while, break them in thoroughly on several hikes beforehand to ensure comfort and prevent blisters. While the climb can be done in solid trail shoes by some, sturdy boots are generally best for the varied terrain. You could also rent boots from an outdoor store.</li><li>Crampons: 10 or 12-point steel crampons, fitted to your boots. Generally recommended for steep, firm snow encountered in June.</li><li>Ice Axe: General mountaineering axe (50-70cm based on height). Recommended for self-arrest, balance on steep snow, and can be used as a brake when glissading.</li><li>Microspikes/Other Traction Devices (Situational): Some climbers opt for microspikes or Yaktrax if conditions are expected to be icy but not extremely steep, or if the forecast is cold. These are less aggressive than crampons and may not be sufficient for all June snow conditions on steeper slopes. Crampons are more of a commitment (bulkier, sharper, may require specific boot compatibility).</li><li>Gaiters: To keep snow, ash, and rocks out of boots (optional but helpful).</li><li>Socks: Wool or synthetic (bring a spare pair or two, as feet can get wet).</li></ul>
+                <p><font size="-1">Note on Ice Axe & Crampons: While some highly experienced climbers familiar with St. Helens and current conditions might choose not to carry an ice axe or crampons in summer, June typically presents significant steep snow. For general safety, and especially if you are not highly experienced with assessing variable mountain snow conditions, an ice axe (for self-arrest) and crampons (for traction on firm/icy snow) are strongly recommended. It is your decision, but erring on the side of caution is advised. These items are available for rent at outdoor stores.</font></p>
             </div>
             <div id="gear-clothing-90s" class="tab-content-90s">
                 <h3>Clothing (Layering System - NO COTTON)</h3>
-                <ul><li>Base Layer: Synthetic or wool...</li> </ul>
+                <p><font size="-1">Prepare for a wide range of temperatures and conditions. Avoid cotton fabrics (jeans, sweatpants) as they absorb moisture and make you cold. Breathable/wicking fabrics are highly recommended.</font></p>
+                <ul><li>Base Layer: Synthetic or wool (wicking).</li><li>Mid Layer(s): Fleece or light puffy coat/vest for warmth.</li><li>Outer Layer (Hardshell): Waterproof AND windproof jacket and pants. A rain coat is always essential, even if the forecast is sunny, as it serves as a vital windbreaker and protection from precipitation.</li><li>Hiking Pants: Quick-drying, synthetic. On a hot day, shorts (with optional tights underneath) or light pants work. On cooler or wetter days, consider long underwear with rain pants, or tights with light snow pants. Even on a hot day, you'll want a pair of pants to pull over for sliding down on snow.</li><li>Gloves: At least two pairs, possibly three. A warmer waterproof pair/mittens and a lighter pair. Highly recommended even on sunny days, especially for sliding on snow (snow is abrasive and cold, and hands can get very cold).</li><li>Warm Hat: Covers ears (beanie).</li><li>Sun Hat/Cap: With a brim for sun protection.</li><li>Balaclava or Neck Gaiter (Buff): For face and neck protection from sun/wind/cold.</li></ul>
+                <p><font size="-1">Take breaks to adjust clothing layers to prevent getting too sweaty (which can lead to chilling) or too cold. Prepare for conditions to be worse than forecasted.</font></p>
             </div>
-            <div id="gear-navigation-90s" class="tab-content-90s"><h3>Navigation</h3><ul><li>Map: Waterproof topographic...</li></ul></div>
-             <div id="gear-safety-90s" class="tab-content-90s"><h3>Safety Equipment</h3><ul><li>Helmet: Recommended...</li></ul></div>
-             <div id="gear-pack-90s" class="tab-content-90s"><h3>Pack & Other Essentials</h3><ul><li>Backpack: 30-45 liter...</li></ul></div>
-             <div id="gear-sliding-90s" class="tab-content-90s"><h3>Sliding Gear</h3><ul><li>Heavy-Duty Plastic Bag...</li></ul></div>
+             <div id="gear-navigation-90s" class="tab-content-90s"><h3>Navigation</h3><ul><li>Map: Waterproof topographic map (e.g., Green Trails Map 364S). Downloading an offline map to your phone is also a good idea.</li><li>Compass.</li><li>Altimeter (or GPS with altimeter function).</li><li>GPS Device or Smartphone: With downloaded offline maps (e.g., Gaia GPS, CalTopo) and a fully charged <strong class="emphasis-90s-red">backup battery pack/power bank</strong>.</li></ul></div>
+             <div id="gear-safety-90s" class="tab-content-90s"><h3>Safety Equipment</h3><ul><li>Helmet: Recommended for falling ice/rock, especially on steeper sections or if others are above you.</li><li>Headlamp: With fresh batteries (essential for early starts, potential delays, and around camp).</li><li>Sunglasses: Dark, glacier-style glasses with side protection (sun reflection off snow is intense). Essential.</li><li>Sunscreen: High SPF (reapply frequently, even if overcast). Essential.</li><li>Lip Balm: With SPF.</li><li>First-Aid Kit: Personal kit (blister care, pain relievers, bandages, antiseptic wipes). Consider a more comprehensive group kit if climbing with others.</li><li>Emergency Shelter: Lightweight bivy sack or emergency blanket.</li><li>Whistle.</li></ul></div>
+             <div id="gear-pack-90s" class="tab-content-90s"><h3>Pack & Other Essentials</h3><ul><li>Backpack: 30-45 liter climbing pack, comfortable for carrying all your extra clothes, food, and water.</li><li>Trekking Poles: With snow baskets (optional but highly recommended for balance, stream crossings, and saving knees on descent. Can also be used as brakes when glissading).</li><li>Water & Food: See "Fueling Your Climb" section for details.</li><li>Toiletries: Small trowel & "blue bags"/wag bag for human waste (pack it ALL out). Toilet paper in a Ziploc. Hand sanitizer. Bring a couple of Ziploc bags for packing out TP and human waste.</li><li>Repair Kit: Duct tape (wrapped around pole or water bottle), zip ties, multi-tool.</li><li>Permit: Printed and accessible.</li><li>Parking Pass: (e.g., Northwest Forest Pass) if required at trailhead.</li><li>Camera/Phone: For photos!</li><li>Headlamp/Flashlight: Also for around camp, and in your pack just in case.</li></ul></div>
+             <div id="gear-sliding-90s" class="tab-content-90s"><h3>Sliding Gear (Optional but Recommended for Descent)</h3><p><font size="-1">For glissading (sliding down snow slopes). This can save time and significant wear and tear on your knees.</font></p><ul><li>Heavy-Duty Plastic Bag: Large contractor-style garbage bag is effective and lightweight. (Regular kitchen bags shred easily and are too small).</li><li>Small Tarp or Piece of Old Shower Curtain: Lightweight and compact.</li><li>Old Rain Pants/Wind Pants: Dedicated for sliding; be aware they might get worn through or torn on the butt.</li><li>Gloves (Crucial for Sliding): Your hands will be in the snow for balance/braking. Ensure you have a pair you don't mind getting wet/abraded, or a spare pair.</li></ul><p><font size="-1">Ensure any sliding material is durable enough not to shred and become litter. Pack out everything you bring.</font></p></div>
         </section>
         <hr>
-        <section id="safety"><h2>Safety Central!</h2> </section>
+        <section id="safety"><h2>Safety Central! <font color="red">READ THIS!</font></h2>
+            <p>Your safety is YOUR responsibility. Mount St. Helens is a wild and unpredictable environment. Understanding and respecting these hazards is paramount. Be prepared to make conservative decisions, including turning back.</p>
+            <div class="card-90s"><h3>☀️ Weather Variability</h3><p>Conditions can change with extreme rapidity. Sunshine can turn to whiteout, high winds, or electrical storms quickly. Check forecasts from multiple reliable sources (NWS, mountain-specific) right up until your climb. Be prepared for any type of weather. Hypothermia and heat exhaustion are both possible. Your objective is the summit, but your primary goal is to return safely. Do not hesitate to turn back if conditions deteriorate.</p></div>
+            <div class="card-90s" style="border-color: #FF0000;"><h3>⚠️ Cornice Danger - <blink class="blinking-new">EXTREME!</blink></h3><p>The crater rim is often overhung by massive, unstable snow cornices. These can break off without warning. <strong class="emphasis-90s-red">STAY WELL BACK FROM THE EDGE.</strong> What appears to be solid ground near the edge could be a fragile cornice. Do not trust footprints that go too close. Look for cracks or other signs of instability. Falling with a collapsing cornice is often fatal. Admire the view from a safe distance. The summit area is relatively flat with lots of space to sit safely away from the edge.</p></div>
+            <div class="card-90s"><h3>❄️ Avalanche Risk</h3><p>Generally lower on Monitor Ridge in June, but still possible, especially after fresh heavy snow or during rapid warming. Check the Northwest Avalanche Center (NWAC) forecast before your climb, even in late season. Understand basic avalanche terrain recognition and safe travel protocols if conditions warrant. If unsure, stick to lower-angle slopes or consider another day.</p></div>
+            <div class="card-90s"><h3>🏂 Glissading Safely</h3><p>Sliding down snow can be efficient but has risks. Control your descent and be aware of your surroundings. <strong class="emphasis-90s-red">ALWAYS remove crampons before glissading.</strong> Use your ice axe (or heels/poles) as a brake and for steering. Only slide if you can clearly see your run-out and it's free of rocks, trees, crevasses (unlikely on these routes but be aware), or other hazards. Watch out for rocks that may have rolled into the sliding path. The snow should be pretty soft by midday which helps control speed. Be cautious of sliding too far from the marked route (wooden posts), which may require difficult scrambling to regain. If visibility is poor or you're uncomfortable, walk down.</p></div>
+            <div class="card-90s"><h3>🌬️ Altitude Considerations</h3><p>While not extreme (~8,365 ft), altitude can affect some individuals. Ascend gradually and stay well-hydrated. Know the symptoms of altitude sickness (headache, nausea, dizziness, fatigue). If symptoms are more than mild, do not ascend further. Descend if they worsen. Acclimatizing by spending a night at moderate elevation before the climb can help some people.</p></div>
+            <div class="card-90s"><h3>🌿 Leave No Trace</h3><p>Protect this unique environment. Pack out EVERYTHING you pack in – trash, food scraps, and all human waste (use blue bags/wag bags). Stay on established trails or durable surfaces like snow. Respect wildlife and observe from a distance. Minimize your impact so others can enjoy this special place.</p></div>
+            <div class="card-90s"><h3>📱 Communication & Partners</h3><p>Cell service is unreliable. Inform someone of your detailed plans. Climbing with a partner or group is highly recommended. Tell a reliable person your route, names of everyone in your party, expected return time, and emergency contact info. Consider carrying a satellite messenger or Personal Locator Beacon (PLB) for emergencies. Climbing solo significantly increases risk.</p></div>
+            <p style="text-align:center; margin-top:15px;"><font size="-1">Additional hazards include volcanic activity (fumaroles, unstable ground near rim - stay clear).</font></p>
+        </section>
         <hr>
-        <section id="fueling"><h2>Fueling Your Climb!</h2> </section>
+        <section id="fueling"><h2>Fueling Your Climb: Food & Fluids - <font color="green">Don't Bonk!</font></h2>
+            <p>Proper nutrition and hydration are critical for energy, endurance, and avoiding altitude-related issues. Plan carefully what you'll eat and drink before, during, and after the climb. Not drinking enough water is a main reason people struggle.</p>
+            <table width="100%" border="0" cellspacing="10"><tr><td valign="top" width="50%">
+            <div class="card-90s">
+                <h3>Food Strategy 🍎</h3>
+                <ul>
+                    <li><strong>Breakfast:</strong> Eat a good, energizing breakfast before you start.</li>
+                    <li><strong>During the Climb (2000-2500+ calories typical):</strong>
+                        <ul>
+                            <li>High-energy snacks: Nuts, granola/energy bars, dried fruit, trail mix, candy, gels/chews.</li>
+                            <li>Lunch: Sandwich, burrito, or similar substantial item.</li>
+                            <li>Bring foods you genuinely enjoy, as appetite can decrease at altitude. It's important to keep eating. Calories and sugar are good.</li>
+                            <li>Pack some extra food in case the day is longer than expected, but avoid overpacking heavy items (e.g., a five-pound bag of granola).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Camping Food:</strong> If camping, bring dinner for Friday night and breakfast for Saturday morning, plus snacks/drinks for around the campfire.</li>
+                </ul>
+            </div>
+            </td><td valign="top" width="50%">
+            <div class="card-90s">
+                <h3>Hydration Plan 💧</h3>
+                <ul>
+                    <li><strong>Minimum:</strong> 2 liters on a cool day, if well-hydrated to start and not sweating much.</li>
+                    <li><strong>Recommended:</strong> 2.5-3 liters, especially on warmer days. 3+ liters if you tend to sweat a lot or the climb is longer.</li>
+                    <li><strong>Electrolytes:</strong> Include at least one liter of an electrolyte drink (e.g., Nuun, Skratch, Gatorade). Straight water is good, but electrolytes help.</li>
+                    <li><strong>Pre-Hydrate:</strong> Drink plenty of water the day before and a liter or so in the morning before starting.</li>
+                    <li><strong>During the Climb:</strong> Sip fluids regularly (every 15-30 minutes), even if you don't feel thirsty. Aim to drink 1.5-2 liters by the summit and save about a liter for the way down.</li>
+                    <li><strong>For Camp:</strong> Bring extra water for drinking and cooking if camping, as there's no running water at trailheads.</li>
+                    <li><strong>Dehydration:</strong> A major factor in fatigue, cramps, altitude sickness, and failed summit attempts. Prioritize hydration.</li>
+                </ul>
+            </div>
+            </td></tr></table>
+            <div class="card-90s" style="margin-top:15px;">
+                <h3>Waste Management 🚽</h3>
+                <p>Be prepared to pack out all waste, including human waste. Follow Leave No Trace principles. "Peeing on the mountain is part of the experience (and shitting too)."</p>
+                <ul>
+                    <li>Bring toilet paper in a Ziploc bag.</li>
+                    <li>Use "blue bags" (human waste pack-out bags) or wag bags for solid human waste. These are often required. Bring a Ziploc or two for this purpose.</li>
+                    <li>Pack out used toilet paper and hygiene products.</li>
+                    <li>Locate toilets (pit toilets at trailheads) or choose spots at least 200 feet from water sources, trails, and campsites for urination.</li>
+                </ul>
+            </div>
+        </section>
         <hr>
-        <section id="logistics"><h2>Trailhead & Camping!</h2> </section>
+        <section id="logistics"><h2>Trailhead & Camping Info!</h2>
+            <p>Information on reaching the trailheads, parking, and informal camping options for those wishing to stay overnight before an early start. Arriving Friday evening to camp is a popular option and encouraged.</p>
+            <table width="100%" border="0" cellspacing="10"><tr><td valign="top" width="50%">
+            <div class="card-90s">
+                <h3>Trailheads & Directions</h3>
+                <ul>
+                    <li><strong>Climbers Bivouac (Monitor Ridge / Summer Route):</strong> Approximately 1 hour 45 minutes from Portland. This is the preferred trailhead when the access road (Forest Road 830 then 81) is snow-free. Google Maps is generally reliable.</li>
+                    <li><strong>Marble Mountain Sno-Park (Worm Flows / Winter Route):</strong> Approximately 1 hour 30 minutes from Portland. Used when Climbers Bivouac road is closed by snow.</li>
+                    <li><strong>Road Conditions:</strong> Always check current road status with the USFS Gifford Pinchot National Forest or Mount St. Helens National Volcanic Monument website before travel, especially in early to mid-June. Roads can be rough.</li>
+                </ul>
+                <h4>Recreation Pass</h4>
+                <p>Each vehicle parked at the trailhead will need a valid recreation pass. Options typically include:</p>
+                 <ul>
+                    <li><strong>Northwest Forest Pass (Annual or Day):</strong> Day passes are $5.</li>
+                    <li><strong>America the Beautiful Pass (Interagency Annual Pass).</strong></li>
+                 </ul>
+                 <p><font size="-1">Passes can often be purchased at the trailhead (self-service, bring cash) or online in advance from sites like <a href="https://www.discovernw.org/mm5/merchant.mvc?screen=PROD&product_code=20281" target="_blank">discovernw.org</a> (buy and print) or at USFS offices and some local retailers. Print and display as instructed.</font></p>
+            </div>
+            </td><td valign="top" width="50%">
+            <div class="card-90s">
+                <h3>Camping at Trailheads (Informal)</h3>
+                <p>Both Climbers Bivouac and Marble Mountain Sno-Park offer informal camping options, popular for an early start. It's essentially dispersed camping in and around the large parking loop areas, surrounded by forest.</p>
+                <ul>
+                    <li><strong>Style:</strong> Free-for-all, first-come, first-served. Not a formal campground with designated sites or reservations. Can get crowded on Friday nights. Consider arriving early-mid afternoon on Friday to secure a good spot if camping with a group.</li>
+                    <li><strong>Facilities:</strong> Pit toilets are typically available. <strong class="emphasis-90s-red">NO running water.</strong></li>
+                    <li><strong>Essentials for Camping:</strong>
+                        <ul>
+                            <li><strong>Water:</strong> Bring ALL water needed for camping (drinking, cooking) AND for the hike itself. This is critical.</li>
+                            <li>Tent or sleep in your vehicle.</li>
+                            <li>Camp chair.</li>
+                            <li>Firewood (if you have any, and if fires are permitted - <strong class="emphasis-90s-red">ALWAYS check current fire restrictions!</strong> Often banned in summer).</li>
+                            <li>Cooler with food and drinks for your camping stay.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Convenience:</strong> Camping at the trailhead allows for an early start without a pre-dawn drive. You can leave most camping gear secured in your car during the hike (some leave tents up and take down after). People often hang out around a fire for an hour or two (or three!) on Friday night.</li>
+                </ul>
+            </div>
+            </td></tr></table>
+        </section>
         <hr>
         <section id="group-climb-june14" class="group-section-card-90s">
             <h2><img src="https://www.animatedimages.org/data/media/692/animated-bonfire-image-0039.gif" alt="animated campfire" width="40" height="30" style="vertical-align:middle;"> Matt's Group Climb - June 14th <span class="blinking-new">INFO!</span></h2>
-            <div class="card-90s">
+            <p>The following information is adapted from Matthew Krueger's email for his group's climb planned for Saturday, June 14th. This provides specific context and advice for that group, though many tips are broadly useful. (Personal contact info and specific financial transaction details have been generalized or omitted for privacy in this public guide format).</p>
+
+            <div class="group-subsection-90s">
                 <h3>Matt's Welcome & Overview</h3>
-                <p>"Hey everyone- Our Mount St. Helens hike is only 16 days away, Saturday June 14! It's a tough ass hike but it's an incredible experience..."</p>
+                <p>"Hey everyone-</p>
+                <p>Our Mount St. Helens hike is only 16 days away, Saturday June 14! It's a tough ass hike but it's an incredible experience. Slow and steady, take your time, enjoy the experience. It is non-technical - no special skills are needed and there are no crazy steep drop offs. Our feet will be on solid dirt, gravel, rock, or snow the whole time.</p>
+                <p>Giving you my recommendations here but ultimately you do what's best for you."</p>
             </div>
-            </section>
+            
+            <div class="group-subsection-90s">
+                <h4>Permit Coordination</h4>
+                <p>"A bunch of different people got permits this year and I'm keeping a list of who's using whose permits. If you're on this email in the main 'to' line, you have a permit secured. The 3 of you in the cc: line are at the top of the wait list. Likely a few more will open up so plan on being there."</p>
+                <p>"Permit holders - let me know if anything isn't accurate. We'll need to update names on the reservations. I'll send out an email to coordinate that the week of the hike. Do not print / confirm your permits until the names have been updated."</p>
+                <p><font color="#006400">Permits (Illustrative Groupings):</font></p>
+                <ul>
+                    <li>(1) ‎Li</li>
+                    <li>(2) Patrick + Matt</li>
+                    <li>(4) Jacob, Anna, Kai, Josh (could someone forward this email to Jacob?)</li>
+                    <li>(4) Chase, Nikki, coworker (one available?)</li>
+                    <li>(5) Tanner, Hunter, Emily, other (one available?)</li>
+                    <li>(12) Shery, Patty, Debbie, Kris, Emerald, Josh, Allie, Maler, Colin, McKenzie, Ryan, Alexis</li>
+                </ul>
+                <p>"Kris x 2, Josh, Maler, and Colin - please Venmo Matt $21 for your permits @Matt-Wisconsin-Example. Matt will get the money to Shery."</p>
+                <p><font color="#006400">Waitlist (Top of List):</font></p>
+                <ul><li>Monica</li><li>Cacera x 2</li><li>Tanner x 3</li></ul>
+                <p>"(I've got more waiting but only including top of the list)"</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Timeline and Route (Group Plan)</h4>
+                <p>"You have the option to drive up early Saturday morning but I encourage everyone to come up on Friday and camp out (or sleep in your vehicle). People usually head up late afternoon or early evening but if anyone is willing to go up more like early-mid afternoon, you could score us a good camping spot and hold it. We'll have lots of tents. Usually I start the hike around 7am but sometimes earlier if the temps are going to be really warm. You can start whenever you want."</p>
+                <p>"There are two main routes up St Helens: the summer route (aka Monitor Ridge) and the winter route (aka Worm Flows). People start using the summer route once the snow on the access road melts out. We're going fairly early in summer - it could be either route. I'll check for updates on road access. If we are on the summer route that's good news because it makes our day a little shorter. Most people take between 4 and 5 hours to get to the top, hang out for a while, then 2-3 hours down. Roundtrip is typically 7-9 hours. If we're on the winter route it'll be more like 5-6 hours up and 3-4 hours down, so more in the 9-11 hour range. Time up mostly depends on your fitness level. Time down depends on fitness but also a lot on how much sliding you do (see below)."</p>
+                <p>"We’ll be back to our cars mid-late afternoon and back in Portland late afternoon or early evening on Saturday."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Carpooling & Directions</h4>
+                <p>"If anyone is interested in carpooling, let me know. We can meet at [Matt's Place - N Portland, near highway - Placeholder]."</p>
+                <p>"Directions to trailhead: The summer route starts at a place called Climbers Bivouac, about 1:45 from Portland. If it's not open, we will start at Marble Mountain Sno Park, about 1:30 from Portland. We will be camping and starting our hike at the trailhead. Googlemaps knows the way."</p>
+                <p>"Recreation pass: Each vehicle will need a NW Forest Pass, either annual or daily ($5). You can buy one at the trailhead or get one ahead of time. Buy and print here: <a href='https://www.discovernw.org/mm5/merchant.mvc?screen=PROD&product_code=20281' target='_blank'>discovernw.org</a>"</p>
+            </div>
+            
+            <div class="group-subsection-90s">
+                <h4>Camping (Group Plan)</h4>
+                <p>"Climbers Bivouac and Marble Mountain Sno Park are big parking loops surrounded by forest. It's basically a free-for-all, first-come first-served, not really a formal campground. There's a pit toilet but no running water. <strong class='emphasis-90s-red'>BRING WATER</strong>, for camping and the hike. Bring a tent or sleep in your vehicle. I have an extra tent, sleeping bag, and pad if anyone needs one."</p>
+                <p>"Bring a camp chair, some wood to burn if you have any, and a cooler with whatever food and drinks you want. We usually hang out around the fire for an hour or two. Or three. Since we're camping where we start our hike, you can throw everything in your car when we get up Saturday morning. I usually leave my tent up and take it down after the hike."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>The Climb (Matt's Advice)</h4>
+                <p>"Our route is about 5 miles and 4500 vertical feet up to the summit (or 6 miles and 5500ft if we're on the winter route). Be prepared for a grueling hike. One step at a time. The summit elevation is 8365ft. Feel free to be on whatever schedule you want and set the pace you want. No one should feel rushed. The pace that works for you is the right pace. Take time to enjoy the views. If at any point you're feeling like giving up, take a nice long break, drink a bunch of water, eat some food, and see how you feel."</p>
+                <p>"We won't all start at the same time but there's usually one big group that starts together. Naturally we'll spread out as we find our preferred speeds. The larger group will break up into smaller groups. It's not a competition; find your comfortable pace and keep it steady. It's a long hike and we have all day."</p>
+                <p>"The first couple miles are relatively less steep, through forest, which is a good warm up. Then we’ll break out of the trees and work our way up a combination of snow and rock and gravelly ashy stuff. There should be a decent foot path and there are wood posts marking the route. It's important to pay attention to the posts, both on the way up and on the way down because they lead us on the best route to the top, and guide us back to the trail through the forest."</p>
+                <p>"There will be a lot of snow on the mountain still but there should be some melted out areas throughout the hike. There will be sections where you can hike on snow, or hike on the rocky trail. Choose what works best for you, as long as you're staying on the general route, watching the posts. The top stretch will probably be all snow."</p>
+                <p>"Up at the summit, the crater rim is the most dangerous part because there is overhanging snow that can collapse into the crater. It's called the cornice. Resist the urge to creep out and get a photo straight down into the crater. Stay a safe distance back. People have died from the cornice collapsing and falling in. Once you get to the top it's relatively flat with lots of space to sit. While up there I recommend walking along the rim because you'll get different angle views into the crater."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Heading Back Down (Glissading Tips from Matt)</h4>
+                <p>"The best part when the mountain is covered with snow is getting to slide back down (although you don't have to do this). Besides being fun, it saves a lot of time and wear and tear on the knees. The snow should be pretty soft by midday so it'll control our sliding speed somewhat. You can use your heals and hiking poles (if you have them) as breaks if needed. We'll slide down in a series of separate runs, using butt tracks from people before us."</p>
+                <p>"The most important thing to remember is you should always be able to see your run-out when taking off on a slide. Basically, don't slide unless you see a safe area at the bottom of the run. In particular, watch out for rocks that have rolled down into your sliding path."</p>
+                <p>"I recommend bringing a large heavy duty plastic garbage bag to sit on for sliding. You can also use a piece of tarp, old shower curtain, whatever. Just make sure it's compact and light weight. A normal kitchen garbage bag will get shredded and is too small for sliding purposes. You could also bring an old pair of rain/wind paints to pull over, but know that they might get worn through on the butt. I have some extra pieces of plastic if anyone wants one."</p>
+                <p>"We'll generally follow the wood posts on the way down, sliding as much as we can. If you slide too far away from the posts, you may need to scramble over a rocky ridge or two to get back on track. If the visibility isn't good, stick very close to the posts and consider not sliding as much, or at all. If you're not comfortable sliding, no problem, just hike down."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Clothes (Matt's Recommendations)</h4>
+                <p>"Rain coat is always essential. Even if the forecast says sun, it'll be useful as a windbreaker. I'll send a weather update the week of the hike. It’ll be a little chilly at night and in the morning but we'll warm up once we get going. Whatever the forecast says, best to prepare for it being worse. It can change quickly on a mountain and we will be hours from our cars for much of the day."</p>
+                <ul>
+                    <li>On a hot day, I recommend shorts (with maybe tights underneath) or light pants.</li>
+                    <li>On a cooler or wetter day I recommend long underwear and rain pants or tights and light snow pants.</li>
+                    <li>Even on a really hot day, you'll want a pair of pants to pull over for sliding down on the snow.</li>
+                    <li>Also bring a good fleece layer or light puffy coat for warmth, even if it's looking like a nice day.</li>
+                    <li>Take breaks to adjust clothing - try not to get too sweaty (which might end up making you cold later).</li>
+                    <li>I highly recommend breathable/wicking type fabrics. Cotton is generally not good for hiking. Do not wear jeans or sweat pants.</li>
+                </ul>
+                <p>"I also highly recommend a sturdy pair of waterproof hiking boots. Ankle support is important. The climb can be done in a solid pair of trail shoes but I feel sturdy boots is the best way to go. If your footwear is new, or you haven't worn them in a while, make sure you hike around in them for at least a couple miles ahead of time to make sure they're comfortable. If you don't have hiking boots or trail shoes, is it worth buying new ones just for this hike? That's up to you. It can be done in other footwear but I don't recommend it. You could rent a pair of boots from an outdoor store. Wear a warm pair of socks and consider bringing a second pair to change into if your first pair gets wet."</p>
+                <p>"Sunglasses and sunscreen are essential, and a hat with a brim is good to have. Even if it's overcast, you can get sunburned. For most of the hike, we're fully exposed to the sun (let’s hope we get some!). Reapply sunscreen a few times throughout the day."</p>
+                <p>"I recommend gloves even on sunny days, for sliding on the snow. Light to medium weight is good. The snow will probably be wet and sloppy and your hands might get cold, even on a nice day, so think about bringing a second pair."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Other Gear (Matt's List)</h4>
+                <ul>
+                    <li>Backpack big enough to carry all your extra clothes, food, and water</li>
+                    <li>I'll bring a first aid kit. If anyone else has one, please bring it along. Having a few spread out in the group would be good</li>
+                    <li>A map of your route is always a good idea (download an offline version for your phone)</li>
+                    <li>Hiking poles (optional, recommended)</li>
+                    <li>Gaiters for around your boots/pants to keep snow, ash, and rocks out (optional)</li>
+                    <li>Headlamp or flashlight for around camp, and also in your pack just in case</li>
+                </ul>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Ice axe, crampons, microspikes (Matt's Perspective)</h4>
+                <p>"If you're reading about the hike, you'll see some websites recommend an ice axe and crampons to help with traction in the snow. These are available for rent at outdoor stores. I have never carried them on St. Helens, even when there were colder conditions and a bunch of snow. It's possible there will be a little bit of icy snow where they would come in handy but generally I have found they are not needed on this hike in summer. If the forecast is looking cold, I might bring micro spikes or Yaktrax to help grip the snow. It is your decision whether to bring crampons or micro spikes. If you do bring either of them, get ones that fit your boots. Crampons are more of a commitment- bulkier, sharper, take a little more effort to put on, and you might have to rent boots to work with them. I'm happy to discuss these options with you."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Food (Matt's Advice)</h4>
+                <p>"Eat a good breakfast to start. Bring high energy stuff- nuts, granola, dried fruit, candy, etc. Bring a sandwich or burrito for lunch. Bring some extra food in case we're up there longer than expected, but don't over pack (e.g. don't bring a five pound bag of granola). 2000-2500 calories should be enough. Sometimes at higher altitudes you start to lose your appetite but it's very important to keep eating so bring stuff you really like. Calories and sugar are good."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Fluids (Matt's Advice)</h4>
+                <p>"You need to bring a minimum of 2 liters on a cool day, and that's assuming you're hydrated to start and don't sweat much. 2.5-3 liters is better, especially on a warmer day, 3+ if you tend to sweat a lot. Straight water is good but I recommend at least one liter of an electrolyte drink. I always drink a liter in the morning before starting the hike too. It's really important to keep drinking fluids on the way up, even if you're not thirsty. Altitude and sweating lead to dehydration and that leads to lack of energy and cramps. Make it a point to get through 1.5-2 liters by the time you get to the top and save a liter for the way back down. Peeing on the mountain is part of the experience (and shitting too). Bring some toilet paper. Ideally you carry out your own poop and TP, but that's up to you. Bring a zip loc bag or two for that purpose."</p>
+                <p>"Besides being in terrible shape, not drinking enough water is the main reason (in my opinion) people don't make it to the top. Don't put yourself at that disadvantage. Also bring a few extra liters for around camp."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Training (Matt's Advice)</h4>
+                <p>"It's a tough ass hike, but if you're in OK-ish shape, you can do this - although you might be quite sore the following couple days. There are a lot of great easy-access training hikes in the gorge. And Forest Park has a few trails that will get you some elevation. If you have a gym membership, it's hard to beat a stairmaster for incline training. Put on a pack with 15-20 pounds of weight to get more out of your training. At this point only being a little over two weeks away, there's not much more you can do. But getting out with your boots and pack on for a couple training hikes will help a little with fitness, and maybe make you feel a little better going into our hike."</p>
+            </div>
+
+            <div class="group-subsection-90s">
+                <h4>Final Words from Matt</h4>
+                <p>"OK, that's it for now, Let me know if you have any questions. And let me know if anything changes with permits. People back out, it happens. Just try not to do it last minute because it will be hard to find someone else at that point."</p>
+                <p><strong class="emphasis-90s-red">"You got this. Slow and steady, it's more mental than physical. It’s going to be an awesome experience."</strong></p>
+                <p>- Matt</p>
+            </div>
+        </section>
         <hr>
-        <section id="climbday"><h2>The Climb Day!</h2> </section>
-        <hr>
-        <section id="resources"><h2>Links & Cool Stuff!</h2> </section>
+        <section id="resources"><h2>Links & Cool Stuff! <img src="https://www.animatedimages.org/data/media/111/animated-computer-image-0079.gif" alt="animated computer" width="30" height="30"></h2>
+            <p>Your journey with Mount St. Helens doesn't end at the trailhead. Proper recovery, reflection, and utilizing key resources for future adventures are all part of the experience. "It's going to be an awesome experience. You got this. Slow and steady, it's more mental than physical."</p>
+            <p><strong>Key Information Resources:</strong></p>
+            <ul>
+                <li>Mount St. Helens Institute (MSHI): <a href="https://www.mshinstitute.org" target="_blank">mshinstitute.org</a></li>
+                <li>Recreation.gov (Permits): <a href="https://www.recreation.gov" target="_blank">recreation.gov</a></li>
+                <li>USFS - MSH National Volcanic Monument: Official USFS website.</li>
+                <li>National Weather Service (NWS): <a href="https://www.weather.gov" target="_blank">weather.gov</a></li>
+                <li>Northwest Avalanche Center (NWAC): <a href="https://www.nwac.us" target="_blank">nwac.us</a></li>
+                <li>Washington Trails Association (WTA): <a href="https://www.wta.org" target="_blank">wta.org</a></li>
+            </ul>
+        </section>
 
     </div>
 
@@ -506,8 +731,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Simplified Mobile menu toggle (if needed, or just let it wrap)
-            const mobileMenuButton = document.getElementById('mobile-menu-button'); // Assuming this ID exists if mobile nav is kept
-            const mobileMenu = document.getElementById('mobile-menu'); // Assuming this ID exists
+            const mobileMenuButton = document.getElementById('mobile-menu-button'); 
+            const mobileMenu = document.getElementById('mobile-menu'); 
             if (mobileMenuButton && mobileMenu) {
                 mobileMenuButton.addEventListener('click', () => {
                     mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
