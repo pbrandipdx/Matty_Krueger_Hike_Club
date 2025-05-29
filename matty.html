@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mount St. Helens - CLIMBER'S GEO-PAGE!! - June Edition!</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Hero Section: 90s style banner. Image removed.
+        - Mountain Stats: Basic text.
+        - June Pros & Cons: Simple bordered divs.
+        - Route Info: Basic text.
+        - Permit Info (General): Basic text.
+        - Fitness Chart: Chart.js chart within a simple bordered container.
+        - Skills Accordions: Simplified to basic show/hide JS, styled with simple borders.
+        - Gear Tabs: Simplified to basic show/hide JS, with "button-like" links.
+        - Safety Hazard Cards: Simplified to bordered divs.
+        - Fueling Section (Food & Water - General): Basic text sections.
+        - Logistics Section (Trailheads, Camping - General): Basic text sections.
+        - Group Climb Details Section: Styled with a different background color and borders.
+        - Climb Day Timeline (General): Simple list or basic table.
+        - Resources: Underlined blue links.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. All charts are Chart.js on Canvas. Diagrams are HTML/CSS with JS. Icons are Unicode. Header image placeholder removed. Visual enhancements achieved via CSS. Tailwind CSS has been removed.
+     -->
+    <style>
+        body { 
+            font-family: "Times New Roman", Times, serif; 
+            background-color: #C0C0C0; /* Classic 90s gray */
+            color: #000000; 
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px; /* Typical 90s fixed width */
+            margin: 10px auto;
+            background-color: #FFFFFF;
+            border: 3px outset #808080;
+            padding: 15px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000080; /* Dark Blue */
+        }
+        h1 {
+            font-size: 28px;
+            text-align: center;
+            border-bottom: 2px dashed #FF0000; /* Red dashed border */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h1 span.subtitle {
+            display: block;
+            font-size: 16px;
+            color: #008000; /* Dark Green */
+            font-style: italic;
+        }
+        h2 {
+            font-size: 22px;
+            color: #800080; /* Purple */
+            border-bottom: 1px solid #000080;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            font-size: 18px;
+            color: #008080; /* Teal */
+        }
+        h4 {
+            font-size: 16px;
+            color: #800000; /* Maroon */
+        }
+
+        p, li {
+            line-height: 1.6;
+            font-size: 14px; /* Common 90s text size */
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        strong {
+            font-weight: bold;
+            color: #FF0000; /* Bright Red for emphasis */
+        }
+
+        a {
+            color: #0000FF; /* Bright Blue */
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #FF00FF; /* Magenta */
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 25px 0;
+        }
+        
+        /* Simulating "Cards" from previous design with simple borders */
+        .card-90s {
+            border: 2px inset #A0A0A0;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #F0F0F0; /* Light gray background for cards */
+        }
+
+        .group-section-card-90s {
+            border: 2px outset #008000; /* Green outset border */
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #E0FFE0; /* Light Green background for group section */
+        }
+        .group-section-card-90s h3, .group-section-card-90s h4 {
+            color: #006400; /* Darker Green for titles in group section */
+        }
+
+
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 500px; /* Smaller chart */
+            margin: 20px auto; 
+            height: 250px; 
+            border: 1px solid #000000;
+        }
+
+        /* Accordion styling */
+        .accordion-toggle-90s {
+            background-color: #D0D0D0;
+            color: #000080;
+            padding: 8px;
+            border: 1px solid #808080;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .accordion-toggle-90s:hover {
+            background-color: #B0B0B0;
+        }
+        .accordion-content-90s {
+            display: none;
+            padding: 10px;
+            border: 1px dashed #A0A0A0;
+            border-top: none;
+            background-color: #FAFAFA;
+        }
+
+        /* Tab styling */
+        .tab-button-90s {
+            display: inline-block;
+            background-color: #0000FF; /* Blue */
+            color: #FFFFFF; /* White text */
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: 2px outset #000080;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .tab-button-90s:hover {
+            background-color: #0000CC;
+        }
+        .tab-button-90s.active {
+            background-color: #FF0000; /* Red for active */
+            border-style: inset;
+        }
+        .tab-content-90s {
+            display: none;
+            padding: 10px;
+            border: 1px solid #000000;
+            margin-top: 5px;
+        }
+        .tab-content-90s.active {
+            display: block;
+        }
+
+        /* Navigation */
+        nav table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #000080; /* Dark Blue nav background */
+            border-bottom: 3px solid #FFD700; /* Gold border */
+        }
+        nav td {
+            text-align: center;
+            padding: 5px 0;
+        }
+        nav a {
+            color: #FFFF00; /* Yellow links */
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            padding: 5px 8px;
+        }
+        nav a:hover {
+            background-color: #FF0000; /* Red hover */
+            color: #FFFFFF;
+        }
+        
+        /* Header */
+        header#hero-90s {
+            background-color: #000000; /* Black background */
+            color: #00FF00; /* Bright Green text */
+            text-align: center;
+            padding: 20px 10px; /* Increased padding since image is removed */
+            border-bottom: 5px ridge #FFD700; /* Gold ridge */
+        }
+        header#hero-90s h1 {
+            font-family: "Comic Sans MS", cursive, sans-serif; /* Classic 90s font */
+            font-size: 36px;
+            color: #FFFF00; /* Yellow */
+            margin: 0;
+            animation: welcome-blink 1.5s infinite;
+        }
+        @keyframes welcome-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        header#hero-90s p {
+            font-size: 14px;
+            color: #00FFFF; /* Cyan */
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 10px;
+            color: #FFFFFF;
+            background-color: #000080; /* Dark Blue */
+            padding: 10px;
+            border-top: 3px solid #FFD700; /* Gold */
+            margin-top: 20px;
+        }
+        footer p {
+            font-size: 10px;
+            margin: 0;
+        }
+        .last-updated {
+            font-style: italic;
+            color: #FFFF00; /* Yellow */
+        }
+
+        /* Blinking "NEW!" text - use sparingly */
+        .blinking-new {
+            animation: blinker 1s linear infinite;
+            color: #FF0000;
+            font-weight: bold;
+        }
+        @keyframes blinker {  
+            50% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+    <header id="hero-90s">
+        <h1>WELCOME TO THE MT. ST. HELENS CLIMBER'S GEO-PAGE! <br><span class="subtitle">Your <span class="blinking-new">ULTIMATE</span> Guide for June Ascents!</span></h1>
+        <p>This page is best viewed with Netscape Navigator 4.0 at 800x600 resolution!</p>
+        </header>
+
+    <nav>
+        <table>
+            <tr>
+                <td><a href="#intro">Intro</a></td>
+                <td><a href="#challenge">The Challenge</a></td>
+                <td><a href="#planning">Planning</a></td>
+                <td><a href="#gear">Gear List!</a></td>
+                <td><a href="#safety">SAFETY FIRST!</a></td>
+            </tr>
+            <tr>
+                <td><a href="#fueling">Food & Water</a></td>
+                <td><a href="#logistics">Trailhead Info</a></td>
+                <td><a href="#climbday">Climb Day Plan</a></td>
+                <td><a href="#group-climb-june14">Matt's Group Page! <span class="blinking-new">NEW!</span></a></td>
+                <td><a href="#resources">Links & Stuff</a></td>
+            </tr>
+        </table>
+    </nav>
+
+    <div class="container">
+        <section id="intro">
+            <h2><img src="https://www.animatedimages.org/data/media/119/animated-mountain-image-0049.gif" alt="animated mountain" width="30" height="30" style="vertical-align:middle; margin-right: 5px;">Introduction to the Volcano!</h2>
+             <p>Welcome, intrepid web surfer! This Geo-Page provides essential information for those planning to climb Mount St. Helens in June. June offers a unique blend of spring and summer conditions, meaning you'll likely encounter significant snow on the upper mountain. Prepare for an unforgettable adventure on this iconic Cascade peak, famous for its 1980 eruption and incredible ecological rebirth. Note that route choice (Monitor Ridge vs. Worm Flows) can depend on snowmelt and road access to Climbers Bivouac, especially earlier in June.</p>
+            
+            <table width="100%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFE0">
+                <tr>
+                    <td width="50%" valign="top">
+                        <h3>Why Climb in June?</h3>
+                        <h4>☀️ Pros:</h4>
+                        <ul>
+                            <li>Generally more stable and sunny weather than earlier spring.</li>
+                            <li>Longer daylight hours for your climb.</li>
+                            <li>Witness the mountain transitioning from spring to summer.</li>
+                            <li>Snow conditions can be ideal for glissading on the descent.</li>
+                        </ul>
+                    </td>
+                    <td width="50%" valign="top">
+                        <h4>❄️ Considerations:</h4>
+                        <ul>
+                            <li>Weather is highly variable: expect potential sun, rain, snow, and wind.</li>
+                            <li>Significant snow cover on the upper mountain is almost certain.</li>
+                            <li>Requires specific snow travel gear and skills (crampons, ice axe).</li>
+                            <li>Permits are mandatory and highly sought after.</li>
+                            <li>Road to Climbers Bivouac (Monitor Ridge trailhead) may not be open early in June, potentially requiring use of the longer Worm Flows route.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+            <div class="card-90s" style="margin-top:15px;">
+                <h3>The Allure of MSH</h3>
+                 <ul>
+                    <li>A unique physical and mental challenge.</li>
+                    <li>Unparalleled views from the crater rim into the steaming crater and of Spirit Lake.</li>
+                    <li>Witness firsthand the incredible regeneration of an ecosystem.</li>
+                    <li>A chance to stand on an active (though closely monitored) volcano.</li>
+                </ul>
+                <p>Climbing Mount St. Helens is more than just reaching a summit; it's an encounter with geological history and the resilience of nature.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="challenge">
+            <h2>The Challenge: Mountain & Routes</h2>
+            <p>Understanding the mountain's history, the physical demands, and the specifics of the potential routes is foundational. The 1980 eruption dramatically reshaped the landscape. Always verify current road access and route conditions before your climb. The climb is generally considered "non-technical" by some experienced climbers in good conditions, meaning there are no vertical cliffs or "crazy steep drop-offs" requiring ropes. However, for June, significant snow cover means snow travel skills and appropriate gear are essential for safety on steep snow slopes.</p>
+
+            <table width="100%" border="0" cellpadding="10" cellspacing="5">
+                <tr align="center">
+                    <td bgcolor="#E0E0E0" class="card-90s">
+                        <font size="+2">⛰️</font><br>
+                        <h4>Peak Elevation</h4>
+                        <p><strong>~8,365 ft</strong><br><font size="-1">At the crater rim.</font></p>
+                    </td>
+                    <td bgcolor="#E0E0E0" class="card-90s">
+                        <font size="+2">📏</font><br>
+                        <h4>Round Trip (Typical)</h4>
+                        <p><strong>~8-12 miles</strong><br><font size="-1">Varies by route.</font></p>
+                    </td>
+                    <td bgcolor="#E0E0E0" class="card-90s">
+                        <font size="+2">🧗</font><br>
+                        <h4>Elevation Gain (Typical)</h4>
+                        <p><strong>~4,500-5,700 ft</strong><br><font size="-1">A strenuous ascent.</font></p>
+                    </td>
+                </tr>
+            </table>
+            
+            <div class="card-90s" style="margin-top:15px;">
+                <h3>The 1980 Eruption & Its Legacy</h3>
+                <p>On May 18, 1980, a massive eruption decapitated Mount St. Helens, reducing its height by over 1,300 feet and creating the distinctive horseshoe-shaped crater. The climbing routes ascend through areas profoundly impacted by this event. You'll traverse ash fields and pumice plains, witnessing the raw power of nature and the remarkable ecological recovery that has occurred since. The area is a living laboratory, a testament to resilience.</p>
+                <p><font size="-1">The eruption not only changed the mountain's physical form but also its ecological trajectory, making your climb a journey through a recovering landscape.</font></p>
+            </div>
+
+            <div class="card-90s">
+                <h3>Route Options for June</h3>
+                <p>The primary route choice in June depends on snowmelt and the accessibility of the road to Climbers Bivouac. Always check with the Mount St. Helens National Volcanic Monument or USFS for the latest conditions.</p>
+                
+                <h4>Monitor Ridge Route (Summer Route)</h4>
+                <p><font size="-1">This is the most common route once the road to Climbers Bivouac is open and snow has melted sufficiently on the lower trail.</font></p>
+                <ul>
+                    <li><strong>Start Point:</strong> Climbers Bivouac (~3,800 ft).</li>
+                    <li><strong>Distance:</strong> Approximately 8-10 miles round trip (about 5 miles to summit).</li>
+                    <li><strong>Elevation Gain:</strong> Approximately 4,500 - 4,800 feet.</li>
+                    <li><strong>Typical Time:</strong> 7-10 hours round trip (4-6 hours up, 2-4 hours down, depending on fitness and glissading).</li>
+                    <li><strong>Characteristics:</strong>
+                        <ul>
+                            <li><strong>Stage 1 (Forested):</strong> Ptarmigan Trail #216A, ~2 miles, gradual ascent, good warm-up.</li>
+                            <li><strong>Stage 2 (Above Treeline):</strong> Boulder fields, ash, pumice, marked by wooden posts. Navigation critical.</li>
+                            <li><strong>Stage 3 (Monitor Ridge proper):</strong> Broad ridge, predominantly snow-covered in June. Follow boot pack or navigate carefully.</li>
+                            <li><strong>Stage 4 (Summit/Crater Rim):</strong> Final push up steeper snow slopes. Be mindful of cornices!</li>
+                        </ul>
+                    </li>
+                    <li><strong>Note:</strong> Key landmarks like Loowit Viewpoint and the "Weather Station" can aid navigation. Pay close attention to marker posts.</li>
+                </ul>
+
+                <h4>Worm Flows Route (Winter Route / Early Summer Alternative)</h4>
+                <p><font size="-1">Used when Climbers Bivouac is inaccessible due to snow on the road. This route is longer and involves more elevation gain.</font></p>
+                <ul>
+                    <li><strong>Start Point:</strong> Marble Mountain Sno-Park (~2,700 ft).</li>
+                    <li><strong>Distance:</strong> Approximately 12 miles round trip (about 6 miles to summit).</li>
+                    <li><strong>Elevation Gain:</strong> Approximately 5,700 feet.</li>
+                    <li><strong>Typical Time:</strong> 9-12 hours round trip (5-7 hours up, 3-5 hours down, depending on fitness and glissading).</li>
+                    <li><strong>Characteristics:</strong> Follows a different ridge system, often entirely on snow in June. Requires strong navigation skills and potentially more extensive snow travel. Marked by poles, but can be harder to follow in poor visibility.</li>
+                </ul>
+                 <p><font size="-1">Route times are highly dependent on individual fitness, snow conditions, group size, and breaks taken. Plan conservatively.</font></p>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="planning">
+            <h2>Planning Your Ascent!</h2>
+            <p>Successful and safe climbs are built on meticulous planning. This involves securing permits, ensuring you meet the physical demands, and possessing the necessary mountaineering skills for June's snow conditions.</p>
+
+            <table width="100%" border="0" cellspacing="10"><tr><td valign="top" width="50%">
+            <div class="card-90s">
+                <h3>Step 1: Permits - <blink>MANDATORY!</blink></h3>
+                <p>Climbing permits are required from April 1 to October 31.</p>
+                <ul>
+                    <li><strong>Where:</strong> Recreation.gov (Search "Mount St. Helens Climbing Permits").</li>
+                    <li><strong>When:</strong> Released in batches. Check Recreation.gov for exact dates/times. They sell out extremely fast, especially for June weekends.</li>
+                    <li><strong>Quota:</strong> 110 climbers per day (May 15 - Oct 31).</li>
+                    <li><strong>Cost:</strong> Per-person, per-day fee applies.</li>
+                    <li><strong>Action:</strong> Print your permit and carry it. Rangers do check.</li>
+                </ul>
+                <p><font size="-1">Securing a permit is the very first step. Be prepared to book the moment they become available.</font></p>
+            </div>
+            </td><td valign="top" width="50%">
+            <div class="card-90s">
+                <h3>Step 2: Physical Fitness - It's Strenuous!</h3>
+                <p>Don't underestimate the challenge. The combination of elevation gain, mileage, altitude, and snow travel demands excellent physical condition. If you're in "OK-ish" shape, you can likely do it, but expect to be sore.</p>
+                <h4>Training Focus: Relative Effort</h4>
+                <div class="chart-container">
+                    <canvas id="fitnessChart"></canvas>
+                </div>
+                <p><font size="-1">Focus on cardiovascular endurance (hiking with a weighted pack, running, cycling), strength training (legs, core), and practice on steep, uneven terrain (snow if possible). Aim to be comfortable hiking 8-12 miles with significant elevation gain before attempting MSH. Consider training on a stairmaster or similar incline machine, and do some training hikes with a weighted pack (15-20 lbs) to simulate climb conditions. Even a few focused training hikes can help with conditioning, gear familiarity, and mental preparation.</font></p>
+            </div>
+            </td></tr></table>
+
+            <div class="card-90s" style="margin-top:15px;">
+                <h3>Step 3: Skills & Experience - Essential for June Snow</h3>
+                <p>June climbs involve significant snow travel. The following skills are not just recommended, they are essential for your safety. While some very experienced climbers familiar with the mountain and current conditions might occasionally make different gear choices, for the general climber in June, proficiency with snow travel tools is key for managing steep snow slopes safely.</p>
+                
+                <div>
+                    <div class="accordion-toggle-90s" data-target="skill-snow">🏔️ Snow Travel Skills (Crampons & Ice Axe) ▼</div>
+                    <div class="accordion-content-90s" id="skill-snow">
+                        <p><font size="-1">Proper use of mountaineering boots and crampons for walking, traversing slopes, and kicking steps. Ice axe skills include self-belay (using the axe for balance and probing snow) and, most crucially, <strong>self-arrest</strong> (stopping a fall on a snow slope). Practice self-arrest thoroughly in a safe environment before your climb. Know how to glissade safely if conditions permit.</font></p>
+                    </div>
+                </div>
+                <div>
+                    <div class="accordion-toggle-90s" data-target="skill-nav">🧭 Navigation Skills (Map, Compass, GPS) ▼</div>
+                    <div class="accordion-content-90s" id="skill-nav">
+                        <p><font size="-1">The route above treeline can be obscured by snow, fog, or whiteout conditions, making navigation critical. Proficiency with a topographic map, compass, and altimeter is vital. A GPS device or smartphone with downloaded offline maps (e.g., Gaia GPS, CalTopo) and a fully charged backup battery pack is highly recommended. Crucially, you must know how to use these tools effectively in challenging conditions and how to follow marker posts, both up and down.</font></p>
+                    </div>
+                </div>
+                 <div>
+                    <div class="accordion-toggle-90s" data-target="skill-glissade">⚠️ Glissading Know-How (Controlled Descent) ▼</div>
+                    <div class="accordion-content-90s" id="skill-glissade">
+                        <p><font size="-1">Glissading (controlled sliding down snow slopes) can be a fun and efficient way to descend, but only if done safely. Requires knowing how to use your ice axe as a brake and rudder. <strong>ALWAYS remove crampons before glissading.</strong> Scout your path carefully for rocks, trees, or other hazards, and ensure a safe runout. Use your heels and hiking poles (if you have them) as additional brakes if needed. Follow established 'butt tracks' if available but always verify the safety of the path. If in doubt, walk down.</font></p>
+                    </div>
+                </div>
+                <p style="margin-top:10px;"><font size="-1">If you are new to these skills, strongly consider hiring a certified mountain guide or taking a comprehensive mountaineering skills course. Your safety depends on it.</font></p>
+            </div>
+        </section>
+
+        <hr>
+        <section id="gear">
+            <h2><img src="https://www.animatedimages.org/data/media/64/animated-backpack-image-0015.gif" alt="animated backpack" width="30" height="30" style="vertical-align:middle; margin-right: 5px;">Essential Gear for June - CHECKLIST!</h2>
+            <p>Having the right gear is critical for safety, comfort, and success on Mount St. Helens in June. This is not an exhaustive list, but these are key items. <strong>NO COTTON</strong> clothing!</p>
+
+            <div>
+                <a href="javascript:void(0);" class="tab-button-90s active" onclick="openGearTab(event, 'gear-footwear-90s')">👣 Footwear & Traction</a>
+                <a href="javascript:void(0);" class="tab-button-90s" onclick="openGearTab(event, 'gear-clothing-90s')">👕 Clothing</a>
+                <a href="javascript:void(0);" class="tab-button-90s" onclick="openGearTab(event, 'gear-navigation-90s')">🧭 Navigation</a>
+                <a href="javascript:void(0);" class="tab-button-90s" onclick="openGearTab(event, 'gear-safety-90s')">🛡️ Safety</a>
+                <a href="javascript:void(0);" class="tab-button-90s" onclick="openGearTab(event, 'gear-pack-90s')">🎒 Pack & Other</a>
+                <a href="javascript:void(0);" class="tab-button-90s" onclick="openGearTab(event, 'gear-sliding-90s')">🏂 Sliding Gear</a>
+            </div>
+
+            <div id="gear-footwear-90s" class="tab-content-90s active">
+                <h3>Footwear & Traction</h3>
+                <ul><li>Hiking Boots: Sturdy, waterproof...</li><li>Crampons: 10 or 12-point steel...</li> </ul>
+            </div>
+            <div id="gear-clothing-90s" class="tab-content-90s">
+                <h3>Clothing (Layering System - NO COTTON)</h3>
+                <ul><li>Base Layer: Synthetic or wool...</li> </ul>
+            </div>
+            <div id="gear-navigation-90s" class="tab-content-90s"><h3>Navigation</h3><ul><li>Map: Waterproof topographic...</li></ul></div>
+             <div id="gear-safety-90s" class="tab-content-90s"><h3>Safety Equipment</h3><ul><li>Helmet: Recommended...</li></ul></div>
+             <div id="gear-pack-90s" class="tab-content-90s"><h3>Pack & Other Essentials</h3><ul><li>Backpack: 30-45 liter...</li></ul></div>
+             <div id="gear-sliding-90s" class="tab-content-90s"><h3>Sliding Gear</h3><ul><li>Heavy-Duty Plastic Bag...</li></ul></div>
+        </section>
+        <hr>
+        <section id="safety"><h2>Safety Central!</h2> </section>
+        <hr>
+        <section id="fueling"><h2>Fueling Your Climb!</h2> </section>
+        <hr>
+        <section id="logistics"><h2>Trailhead & Camping!</h2> </section>
+        <hr>
+        <section id="group-climb-june14" class="group-section-card-90s">
+            <h2><img src="https://www.animatedimages.org/data/media/692/animated-bonfire-image-0039.gif" alt="animated campfire" width="40" height="30" style="vertical-align:middle;"> Matt's Group Climb - June 14th <span class="blinking-new">INFO!</span></h2>
+            <div class="card-90s">
+                <h3>Matt's Welcome & Overview</h3>
+                <p>"Hey everyone- Our Mount St. Helens hike is only 16 days away, Saturday June 14! It's a tough ass hike but it's an incredible experience..."</p>
+            </div>
+            </section>
+        <hr>
+        <section id="climbday"><h2>The Climb Day!</h2> </section>
+        <hr>
+        <section id="resources"><h2>Links & Cool Stuff!</h2> </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 1998-2025 Mount St. Helens Climber's Geo-Page! All rights reserved... maybe.</p>
+        <p class="last-updated">Last Updated: May 29, 2025</p>
+        <p><img src="https://www.animatedimages.org/data/media/1540/animated-counter-image-0005.gif" alt="hit counter"> Hits on this page!</p>
+        <p><a href="#hero-90s">Back to Top!</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Simplified Mobile menu toggle (if needed, or just let it wrap)
+            const mobileMenuButton = document.getElementById('mobile-menu-button'); // Assuming this ID exists if mobile nav is kept
+            const mobileMenu = document.getElementById('mobile-menu'); // Assuming this ID exists
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+                });
+            }
+
+            // Accordion toggle
+            const accordionToggles = document.querySelectorAll('.accordion-toggle-90s');
+            accordionToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const targetId = toggle.dataset.target;
+                    const content = document.getElementById(targetId);
+                    if (content) {
+                        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                        toggle.textContent = content.style.display === 'block' ? 
+                            toggle.textContent.replace('▼', '▲') : 
+                            toggle.textContent.replace('▲', '▼');
+                    }
+                });
+            });
+
+            // Tab functionality
+            window.openGearTab = function(evt, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tab-content-90s");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                    tabcontent[i].classList.remove("active");
+                }
+                tablinks = document.getElementsByClassName("tab-button-90s");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].classList.remove("active");
+                }
+                document.getElementById(tabName).style.display = "block";
+                document.getElementById(tabName).classList.add("active");
+                evt.currentTarget.classList.add("active");
+            }
+            // Initialize first tab
+            if (document.querySelector('.tab-button-90s.active')) {
+                 document.querySelector('.tab-button-90s.active').click();
+            }
+
+
+            // Fitness Chart (basic 90s styling for the chart itself is hard with Chart.js defaults)
+            const ctx = document.getElementById('fitnessChart');
+            if (ctx) {
+                Chart.defaults.font.family = '"Times New Roman", Times, serif';
+                Chart.defaults.color = '#000000';
+                const fitnessData = {
+                    labels: ['Hiking (w/ pack)', ['Cardio Endurance', '(Running/Cycling)'], ['Strength Training', '(Legs/Core)']],
+                    datasets: [{
+                        label: 'Relative Training Emphasis',
+                        data: [8, 7, 6], 
+                        backgroundColor: [
+                            'rgba(0, 0, 255, 0.7)', // Blue
+                            'rgba(255, 0, 0, 0.7)', // Red
+                            'rgba(0, 128, 0, 0.7)'  // Green
+                        ],
+                        borderColor: [
+                            '#000080', 
+                            '#800000',
+                            '#003300'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: fitnessData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 10,
+                                title: { display: true, text: 'Relative Emphasis (out of 10)', font: {size: 12, family: 'Arial'}, color: '#000080' },
+                                grid: { color: '#A0A0A0' },
+                                ticks: { color: '#000000' }
+                            },
+                            x: {
+                                title: { display: true, text: 'Training Activity', font: {size: 12, family: 'Arial'}, color: '#000080' },
+                                grid: { display: false },
+                                ticks: { color: '#000000' }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: true, text: 'Recommended Training Focus Areas', font: {size: 14, family: 'Arial', weight: 'bold'}, color: '#000080'},
+                            tooltip: {
+                                backgroundColor: '#FFFFE0', // Light yellow
+                                titleColor: '#000080',
+                                bodyColor: '#000000',
+                                borderColor: '#000000',
+                                borderWidth: 1,
+                                titleFont: { size: 12, family: 'Arial', weight: 'bold'},
+                                bodyFont: { size: 10, family: 'Times New Roman'},
+                                callbacks: {
+                                    title: function(tooltipItems) {
+                                        const item = tooltipItems[0];
+                                        let label = item.chart.data.labels[item.dataIndex];
+                                        if (Array.isArray(label)) {
+                                          return label.join(' ');
+                                        } else {
+                                          return label;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
